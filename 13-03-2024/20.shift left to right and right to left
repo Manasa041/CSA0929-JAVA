@@ -1,0 +1,43 @@
+public class Main {
+    public static void main(String[] args) {
+        int[] A = {10, 5, 15};
+        int[] B = {8, 7, 12};
+        if (A.length != B.length) {
+            throw new IllegalArgumentException("Arrays A and B must have the same length.");
+        }
+
+        int[] shiftedA = new int[A.length];
+        int[] shiftedB = new int[B.length];
+
+        for (int i = 0; i < A.length; i++) {
+            if (A[i] > B[i]) {
+                // Left shift A[i] by 1 using bitwise left shift operator (<<)
+                shiftedA[i] = A[i] << 1;
+                // Right shift B[i] by 1 using bitwise right shift operator (>>)
+                shiftedB[i] = B[i] >> 1;
+            } else {
+                // Right shift A[i] by 1 using bitwise right shift operator (>>)
+                shiftedA[i] = A[i] >> 1;
+                // Left shift B[i] by 1 using bitwise left shift operator (<<)
+                shiftedB[i] = B[i] << 1;
+            }
+        }
+
+        System.out.println("Original arrays:");
+        System.out.print("A: ");
+        printArray(A);
+        System.out.print("B: ");
+        printArray(B);
+        System.out.println("\nShifted arrays:");
+        System.out.print("A: ");
+        printArray(shiftedA);
+        System.out.print("B: ");
+        printArray(shiftedB);
+    }
+    public static void printArray(int[] arr) {
+        for (int element : arr) {
+            System.out.print(element + " ");
+        }
+        System.out.println();
+    }
+}
