@@ -1,0 +1,17 @@
+public class Main {
+    public static void main(String[] args) {
+        int loop1Value = 10;
+        int loop2Value = 20;
+        int greatestValueLoop = 0;
+        if (loop1Value > loop2Value) {
+            greatestValueLoop = 1;
+        } else if (loop2Value > loop1Value) {
+            greatestValueLoop = 2;
+        } else { // Values are equal
+            System.out.println("Values in both loops are equal.");
+        }
+        if (greatestValueLoop > 0) {
+            System.out.println("The greatest value is found in Loop: " + greatestValueLoop);
+        }
+    }
+}
