@@ -1,0 +1,22 @@
+import java.util.Random;
+public class Main {
+    public static void main(String[] args) {
+        Random random = new Random();
+        int luckyNumber = random.nextInt(10) + 1;
+        System.out.print("Guess a number between 1 and 10: ");
+        int guess = new java.util.Scanner(System.in).nextInt();
+        switch (guess) {
+            case 1:
+                if (guess == luckyNumber) {
+                    System.out.println("Congratulations! You guessed the lucky number!");
+                } else {
+                    System.out.println("Sorry, the lucky number was " + luckyNumber + ".");
+                }
+                break;
+            case 2:
+                break;
+            default:
+                System.out.println("Invalid guess. Please enter a number between 1 and 10.");
+        }
+    }
+}
