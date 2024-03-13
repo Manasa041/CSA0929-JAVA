@@ -1,0 +1,29 @@
+public class Main {
+
+    public static void main(String[] args) {
+        int loop1Iterations = 10;
+        int loop2Iterations = 5;
+        int shortestPathLoop = 0;
+        int shortestPathLength = Integer.MAX_VALUE;
+        int pathLength1 = calculatePathLength(loop1Iterations);
+        int pathLength2 = calculatePathLength(loop2Iterations);
+
+        if (pathLength1 < pathLength2) {
+            shortestPathLoop = 1;
+            shortestPathLength = pathLength1;
+        } else if (pathLength2 < pathLength1) {
+            shortestPathLoop = 2;
+            shortestPathLength = pathLength2;
+        } else { // Equal path lengths
+            System.out.println("Both loops have the same shortest path length.");
+        }
+
+        if (shortestPathLoop > 0) {
+            System.out.println("Shortest path found in Loop: " + shortestPathLoop);
+            System.out.println("Shortest path length: " + shortestPathLength);
+        }
+    }
+    public static int calculatePathLength(int iterations) {
+        return iterations * 2;
+    }
+}
