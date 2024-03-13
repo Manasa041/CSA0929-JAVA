@@ -1,0 +1,36 @@
+import java.util.Scanner;
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter your annual earning (in rupees): ");
+        double earning = scanner.nextDouble();
+        double tax = calculateTax(earning);
+        System.out.println("For an earning of Rs. " + earning + ", income tax is Rs. " + tax);
+    }
+    public static double calculateTax(double earning) {
+        double tax = 0;
+        final double[] slabs = {50000, 60000, 150000};
+        final double[] rates = {0, 0.1, 0.2, 0.3};
+        for (int i = 0; i < slabs.length; i++) {
+            if (earning <= slabs[i]) {
+                if (i > 0) {
+                    tax += (earning - slabs[i - 1]) * rates[i];
+                } else {
+                    tax += earning * rates[i];
+                }
+                break;
+            }
+        }
+        if (earning > slabs[slabs.length - 1]) {
+            tax += (earning - slabs[slabs.length - 1]) * rates[rates.length - 1];
+        }
+        return tax;
+    }
+}
+
+OUTPUT:
+Enter your annual earning (in rupees): 1300000
+For an earning of Rs. 1300000.0, income tax is Rs. 345000.0
+
+Process finished with exit code 0
+
