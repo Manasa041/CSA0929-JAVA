@@ -1,0 +1,43 @@
+public class Main {
+    private String accountNumber;
+    private double balance;
+    public Main(String accountNumber) {
+        this.accountNumber = accountNumber;
+        this.balance = 0.0; // Initial balance is zero
+    }
+    public void deposit(double amount) {
+        if (amount > 0) {
+            balance += amount;
+            System.out.println("Successfully deposited $" + amount + " into account " + accountNumber);
+        } else {
+            System.out.println("Invalid deposit amount");
+        }
+    }
+    public void withdraw(double amount) {
+        if (amount > 0 && balance >= amount) {
+            balance -= amount;
+            System.out.println("Successfully withdrew $" + amount + " from account " + accountNumber);
+        } else {
+            System.out.println("Invalid withdrawal amount or insufficient funds");
+        }
+    }
+    public double getBalance() {
+        return balance;
+    }
+
+    public static void main(String[] args) {
+        Main account1 = new Main("123456789");
+        account1.deposit(1000); // Deposit $1000
+        System.out.println("Current balance: $" + account1.getBalance());
+        account1.withdraw(500); // Withdraw $500
+        System.out.println("Current balance: $" + account1.getBalance());
+    }
+}
+
+OUTPUT:
+Successfully deposited $1000.0 into account 123456789
+Current balance: $1000.0
+Successfully withdrew $500.0 from account 123456789
+Current balance: $500.0
+
+Process finished with exit code 0
