@@ -1,0 +1,39 @@
+public class Main {
+    private int hours;
+    private int minutes;
+    private int seconds;
+    private boolean isAM;
+    public Main(int hours, int minutes, int seconds) {
+        if (isValidTime(hours, minutes, seconds)) {
+            this.hours = hours;
+            this.minutes = minutes;
+            this.seconds = seconds;
+            this.isAM = hours < 12; // Set AM/PM mode based on hours
+        } else {
+            System.out.println("Invalid time format");
+        }
+    }
+    private boolean isValidTime(int hours, int minutes, int seconds) {
+        return hours >= 0 && hours < 24 && minutes >= 0 && minutes < 60 && seconds >= 0 && seconds < 60;
+    }
+    public void setAMPM(boolean isAM) {
+        this.isAM = isAM;
+    }
+    public String getTime() {
+        String time = String.format("%02d:%02d:%02d", hours, minutes, seconds);
+        return time + (isAM ? " AM" : " PM");
+    }
+    public static void main(String[] args) {
+        // Example usage
+        Main clock1 = new Main(11, 30, 0);
+        System.out.println("Current time: " + clock1.getTime());
+        clock1.setAMPM(false); // Change to PM mode
+        System.out.println("Current time: " + clock1.getTime());
+    }
+}
+
+OUTPUT:
+Current time: 11:30:00 AM
+Current time: 11:30:00 PM
+
+Process finished with exit code 0
