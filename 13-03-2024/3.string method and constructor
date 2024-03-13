@@ -1,0 +1,33 @@
+public class Main {
+    public static void main(String[] args) {
+        int intNum = 100;
+        long longNum = intNum;
+        float floatNum = longNum;
+        double doubleNum = floatNum;
+        System.out.println("Implicit Conversion (Widening):");
+        System.out.println("intNum: " + intNum);
+        System.out.println("longNum: " + longNum);
+        System.out.println("floatNum: " + floatNum);
+        System.out.println("doubleNum: " + doubleNum);
+        doubleNum = 123456789.987654321;
+        floatNum = (float) doubleNum;
+        longNum = (long) floatNum;
+        intNum = (int) longNum;
+        System.out.println("\nExplicit Conversion (Narrowing):");
+        System.out.println("doubleNum: " + doubleNum);
+        System.out.println("floatNum: " + floatNum);
+        System.out.println("longNum: " + longNum);
+        System.out.println("intNum: " + intNum);
+        int maxValue = Integer.MAX_VALUE;
+        int minValue = Integer.MIN_VALUE;
+        System.out.println("\nOverflow and Underflow Scenarios:");
+        System.out.println("Max int value: " + maxValue);
+        System.out.println("Min int value: " + minValue);
+
+        int overflowValue = maxValue + 1;
+        System.out.println("Overflow value: " + overflowValue);
+
+        int underflowValue = minValue - 1;
+        System.out.println("Underflow value: " + underflowValue);
+    }
+}
