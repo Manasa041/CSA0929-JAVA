@@ -1,0 +1,10 @@
+import java.util.Date;
+public class Main {
+    public static void main(String[] args) {
+        Date currentDate = new Date();
+        System.out.println("Current Date and Time: " + currentDate);
+    }
+}
+
+OUTPUT:
+Current Date and Time: Thu Mar 14 10:20:48 IST 2024
