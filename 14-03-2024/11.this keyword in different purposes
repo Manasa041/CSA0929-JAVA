@@ -1,0 +1,30 @@
+public class Main {
+    private int value;
+    public Main() {
+        this(0); // Invoking another constructor with value 0
+        System.out.println("Constructor 1 invoked");
+    }
+    public Main(int value) {
+        this.value = value; // Referencing instance variable 'value'
+        System.out.println("Constructor 2 invoked with value: " + value);
+    }
+    public void myMethod(Main obj) {
+        System.out.println("myMethod invoked with parameter: " + obj.value);
+    }
+    public Main getObject() {
+        System.out.println("getObject invoked, returning current object with value: " + this.value);
+        return this;
+    }
+
+    public static void main(String[] args) {
+        Main obj1 = new Main();
+        obj1.myMethod(obj1);
+        Main obj2 = obj1.getObject();
+    }
+}
+
+OUTPUT:
+Constructor 2 invoked with value: 0
+Constructor 1 invoked
+myMethod invoked with parameter: 0
+getObject invoked, returning current object with value: 0
