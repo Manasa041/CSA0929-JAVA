@@ -1,0 +1,31 @@
+public class Main{
+    public static <T> boolean isEqual(T obj1, T obj2) {
+        return obj1.equals(obj2);
+    }
+    public static <T> void printArray(T[] array) {
+        for (T element : array) {
+            System.out.print(element + " ");
+        }
+        System.out.println();
+    }
+    public static void main(String[] args) {
+        System.out.println("isEqual(10, 10): " + isEqual(10, 10)); // true
+        System.out.println("isEqual(\"Hello\", \"Hello\"): " + isEqual("Hello", "Hello")); // true
+        System.out.println("isEqual(10, 20): " + isEqual(10, 20)); // false
+        Integer[] intArray = {1, 2, 3, 4, 5};
+        String[] stringArray = {"Hello", "World", "!"};
+        System.out.print("intArray: ");
+        printArray(intArray);
+        System.out.print("stringArray: ");
+        printArray(stringArray);
+    }
+}
+
+OUTPUT:
+isEqual(10, 10): true
+isEqual("Hello", "Hello"): true
+isEqual(10, 20): false
+intArray: 1 2 3 4 5 
+stringArray: Hello World ! 
+
+Process finished with exit code 0
