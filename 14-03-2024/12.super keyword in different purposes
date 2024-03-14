@@ -1,0 +1,30 @@
+class Parent {
+    int parentValue;
+    Parent(int value) {
+        this.parentValue = value;
+    }
+    void display() {
+        System.out.println("Parent's display method");
+    }
+}
+class Child extends Parent {
+    int childValue;
+    Child(int parentValue, int childValue) {
+        super(parentValue); // Calling superclass constructor
+        this.childValue = childValue;
+    }
+    void display() {
+        super.display(); // Invoking superclass method
+        System.out.println("Child's display method");
+    }
+    void displayParentValue() {
+        System.out.println("Parent value accessed from child: " + super.parentValue); // Accessing superclass member
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        Child child = new Child(5, 10);
+        child.display();
+        child.displayParentValue();
+    }
+}
