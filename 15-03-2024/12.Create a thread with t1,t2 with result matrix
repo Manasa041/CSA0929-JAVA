@@ -1,0 +1,99 @@
+import java.util.concurrent.CountDownLatch;
+public class Main {
+    public static void main(String[] args) {
+        int[][] matrix1 = new int[3][3];
+        int[][] matrix2 = new int[3][3];
+        CountDownLatch latch = new CountDownLatch(1);
+
+        Thread t1 = new Thread(() -> {
+            fillMatrix(matrix1);
+            System.out.println("Matrix 1:");
+            printMatrix(matrix1);
+        });
+        Thread t2 = new Thread(() -> {
+            fillMatrix(matrix2);
+            System.out.println("Matrix 2:");
+            printMatrix(matrix2);
+        });
+        Thread t4 = new Thread(() -> {
+            try {
+                t1.join();
+                t2.join();
+                int totalElements = countTotalElements(matrix1) + countTotalElements(matrix2);
+                System.out.println("Total elements in both matrices: " + totalElements);
+                latch.countDown();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
+
+        Thread t3 = new Thread(() -> {
+            try {
+                latch.await();
+                t1.join();
+                t2.join();
+                int[][] resultMatrix = addMatrices(matrix1, matrix2);
+                System.out.println("Result Matrix:");
+                printMatrix(resultMatrix);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
+
+        t1.start();
+        t2.start();
+        t4.start();
+        t3.start();
+    }
+
+    private static void fillMatrix(int[][] matrix) {
+        // Fill matrix with some values
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+                matrix[i][j] = (int) (Math.random() * 10); // Random values for demonstration
+            }
+        }
+    }
+    private static int countTotalElements(int[][] matrix) {
+        int count = 0;
+        for (int[] row : matrix) {
+            count += row.length;
+        }
+        return count;
+    }
+    private static int[][] addMatrices(int[][] matrix1, int[][] matrix2) {
+        // Add two matrices element-wise
+        int[][] result = new int[3][3];
+        for (int i = 0; i < matrix1.length; i++) {
+            for (int j = 0; j < matrix1[i].length; j++) {
+                result[i][j] = matrix1[i][j] + matrix2[i][j];
+            }
+        }
+        return result;
+    }
+    private static void printMatrix(int[][] matrix) {
+        for (int[] row : matrix) {
+            for (int value : row) {
+                System.out.print(value + " ");
+            }
+            System.out.println();
+        }
+    }
+}
+
+OUTPUT:
+Matrix 1:
+Matrix 2:
+7 5 4 
+8 0 4 
+7 1 7 
+3 9 8 
+6 4 8 
+2 9 3 
+Total elements in both matrices: 18
+Result Matrix:
+10 14 12 
+14 4 12 
+9 10 10 
+
+Process finished with exit code 0
