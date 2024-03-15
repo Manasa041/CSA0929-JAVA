@@ -1,0 +1,34 @@
+import java.util.Scanner;
+class NonIntegerException extends Exception {
+    public NonIntegerException() {
+        super("Non-integer value entered.");
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        try {
+            System.out.print("Enter an integer: ");
+            String input = scanner.nextLine();
+            int number = Integer.parseInt(input);
+            if (!isValidInteger(input)) {
+                throw new NonIntegerException();
+            }
+            System.out.println("Entered number: " + number);
+        } catch (NumberFormatException e) {
+            System.out.println("Error: Invalid number format.");
+        } catch (NonIntegerException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+    private static boolean isValidInteger(String input) {
+        String integerPattern = "^-?\\d+$";
+        return input.matches(integerPattern);
+    }
+}
+
+OUTPUT:
+Enter an integer: Po
+Error: Invalid number format.
+
+Process finished with exit code 0
