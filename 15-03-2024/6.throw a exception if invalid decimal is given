@@ -1,0 +1,36 @@
+import java.util.Scanner;
+class InvalidDecimalException extends Exception {
+    public InvalidDecimalException() {
+        super("Invalid decimal number.");
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        try {
+            System.out.print("Enter a decimal number: ");
+            String input = scanner.nextLine();
+            double number = Double.parseDouble(input);
+            if (!isValidDecimal(input)) {
+                throw new InvalidDecimalException(); 
+            }
+            System.out.println("Entered number: " + number);
+        } catch (NumberFormatException e) {
+            System.out.println("Error: Invalid number format.");
+        } catch (InvalidDecimalException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+    private static boolean isValidDecimal(String input) {
+        // Regex pattern to match a valid decimal number
+        String decimalPattern = "^-?\\d*\\.?\\d+$";
+        return input.matches(decimalPattern);
+    }
+}
+
+OUTPUT:
+Enter a decimal number: 0.9
+Entered number: 0.9
+
+Process finished with exit code 0
