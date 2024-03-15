@@ -1,0 +1,16 @@
+import java.util.Scanner;
+public class Main {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        int lower= input.nextInt();
+        int upper= input.nextInt();
+        for(int i=lower;i<=upper;i++){
+            System.out.print("("+i+","+(i*i)+")"+" ");
+        }
+    }
+}
+INPUT:
+lower:45
+upper:49
+OUTPUT:
+(45,2025) (46,2116) (47,2209) (48,2304) (49,2401)
