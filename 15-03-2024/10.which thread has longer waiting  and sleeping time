@@ -1,0 +1,43 @@
+public class Main {
+    public static void main(String[] args) {
+        Thread t1 = new Thread(() -> {
+            long startTime = System.currentTimeMillis();
+            try {
+                Thread.sleep(3000); 
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            long endTime = System.currentTimeMillis();
+            System.out.println("Thread 1 total sleeping time: " + (endTime - startTime) + "ms");
+        });
+        Thread t2 = new Thread(() -> {
+            long startTime = System.currentTimeMillis();
+            try {
+                Thread.sleep(5000); 
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            long endTime = System.currentTimeMillis();
+            System.out.println("Thread 2 total sleeping time: " + (endTime - startTime) + "ms");
+        });
+
+        long startTime = System.currentTimeMillis(); 
+        t1.start();
+        t2.start();
+        try {
+            t1.join();
+            t2.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        long endTime = System.currentTimeMillis(); // End time of the program
+        System.out.println("Total execution time of the program: " + (endTime - startTime) + "ms");
+    }
+}
+
+OUTPUT:
+Thread 1 total sleeping time: 3004ms
+Thread 2 total sleeping time: 5002ms
+Total execution time of the program: 5002ms
+
+Process finished with exit code 0
