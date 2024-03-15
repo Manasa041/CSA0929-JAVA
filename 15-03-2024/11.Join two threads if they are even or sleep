@@ -1,0 +1,56 @@
+public class Main {
+    public static void main(String[] args) {
+        Thread t1 = new Thread(() -> {
+            for (int i = 0; i < 10; i++) {
+                if (i % 2 == 0) {
+                    System.out.println("T1: " + i);
+                }
+            }
+        });
+        Thread t2 = new Thread(() -> {
+            for (int i = 0; i < 10; i++) {
+                if (i % 2 == 0) {
+                    System.out.println("T2: " + i);
+                }
+            }
+        });
+        t1.start();
+        t2.start();
+        try {
+            t1.join(10000);
+            t2.join(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        if (t1.isAlive()) {
+            System.out.println("T1 is still running, putting it to sleep...");
+            try {
+                t1.sleep(10000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if (t2.isAlive()) {
+            System.out.println("T2 is still running, putting it to sleep...");
+            try {
+                t2.sleep(5000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
+
+OUTPUT:
+T2: 0
+T2: 2
+T2: 4
+T2: 6
+T2: 8
+T1: 0
+T1: 2
+T1: 4
+T1: 6
+T1: 8
+Process finished with exit code 0
