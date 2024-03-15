@@ -1,0 +1,70 @@
+public class Main {
+    public static void main(String[] args) {
+        Thread t1 = new ArmstrongThread();
+        Thread t2 = new FibonacciThread();
+
+        t1.start();
+        t2.start();
+    }
+}
+class ArmstrongThread extends Thread {
+    @Override
+    public void run() {
+        System.out.println("T1: Armstrong numbers thread started");
+        for (int i = 1; i <= 500; i++) {
+            if (isArmstrong(i)) {
+                System.out.println("Armstrong number: " + i);
+            }
+        }
+        System.out.println("T1: Armstrong numbers thread finished");
+    }
+    private boolean isArmstrong(int num) {
+        int sum = 0;
+        int temp = num;
+        int digits = String.valueOf(num).length();
+        while (temp != 0) {
+            int digit = temp % 10;
+            sum += Math.pow(digit, digits);
+            temp /= 10;
+        }
+        return sum == num;
+    }
+}
+class FibonacciThread extends Thread {
+    @Override
+    public void run() {
+        System.out.println("T2: Fibonacci series thread started");
+        int n = 10; 
+        int a = 0, b = 1;
+        System.out.print("Fibonacci Series: ");
+        for (int i = 0; i < n; i++) {
+            System.out.print(a + " ");
+            int temp = a + b;
+            a = b;
+            b = temp;
+        }
+        System.out.println("\nT2: Fibonacci series thread finished");
+    }
+}
+
+OUTPUT:
+T1: Armstrong numbers thread started
+T2: Fibonacci series thread started
+Fibonacci Series: 0 1 1 2 3 5 8 13 21 34 
+T2: Fibonacci series thread finished
+Armstrong number: 1
+Armstrong number: 2
+Armstrong number: 3
+Armstrong number: 4
+Armstrong number: 5
+Armstrong number: 6
+Armstrong number: 7
+Armstrong number: 8
+Armstrong number: 9
+Armstrong number: 153
+Armstrong number: 370
+Armstrong number: 371
+Armstrong number: 407
+T1: Armstrong numbers thread finished
+
+Process finished with exit code 0
