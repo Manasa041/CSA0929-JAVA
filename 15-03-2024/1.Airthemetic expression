@@ -1,0 +1,29 @@
+public class Main {
+    public static void main(String[] args) {
+        try {
+            int result = 10 / 0; // Division by zero
+        } catch (ArithmeticException e) {
+            System.out.println("Arithmetic Exception: " + e.getMessage());
+        }
+        try {
+            double result = Math.log(0); // Logarithm of zero
+        } catch (ArithmeticException e) {
+            System.out.println("Arithmetic Exception: " + e.getMessage());
+        }
+        try {
+            double result = Math.tan(Math.toRadians(90)); // Tan 90 degrees
+        } catch (ArithmeticException e) {
+            System.out.println("Arithmetic Exception: " + e.getMessage());
+        }
+        try {
+            double result = Math.pow(0, 0); // Zero to the power of zero
+        } catch (ArithmeticException e) {
+            System.out.println("Arithmetic Exception: " + e.getMessage());
+        }
+    }
+}
+
+OUTPUT:
+Arithmetic Exception: / by zero
+
+Process finished with exit code 0
