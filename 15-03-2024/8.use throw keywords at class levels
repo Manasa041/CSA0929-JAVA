@@ -1,0 +1,35 @@
+
+class MyCustomException extends Exception {
+    public MyCustomException(String message) {
+        super(message);
+    }
+}
+public class Main {
+    public void methodWithException() throws MyCustomException {
+        throw new MyCustomException("Exception thrown from methodWithException");
+    }
+    public void anotherMethod() throws MyCustomException, IllegalArgumentException {
+        throw new IllegalArgumentException("Illegal argument exception thrown from anotherMethod");
+    }
+
+    public static void main(String[] args) {
+        Main example = new Main();
+        try {
+            example.methodWithException();
+        } catch (MyCustomException e) {
+            System.out.println("Caught custom exception: " + e.getMessage());
+        }
+
+        try {
+            example.anotherMethod();
+        } catch (MyCustomException | IllegalArgumentException e) {
+            System.out.println("Caught exception: " + e.getMessage());
+        }
+    }
+}
+
+OUTPUT:
+Caught custom exception: Exception thrown from methodWithException
+Caught exception: Illegal argument exception thrown from anotherMethod
+
+Process finished with exit code 0
