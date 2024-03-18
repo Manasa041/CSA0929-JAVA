@@ -1,0 +1,34 @@
+public class Main {
+    public static void main(String[] args) {
+        Thread fibonacciThread = new Thread(new FibonacciGenerator());
+        fibonacciThread.start();
+    }
+
+    static class FibonacciGenerator implements Runnable {
+        private static final int MAX_TERM = 10; 
+
+        @Override
+        public void run() {
+            int n1 = 0, n2 = 1;
+            System.out.println("Fibonacci Series:");
+            System.out.print(n1 + " " + n2 + " ");
+
+            for (int i = 2; i < MAX_TERM; i++) {
+                int nextTerm = n1 + n2;
+                System.out.print(nextTerm + " ");
+                n1 = n2;
+                n2 = nextTerm;
+                try {
+                    Thread.sleep(500); 
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+}
+
+OUTPUT:
+Fibonacci Series:
+0 1 1 2 3 5 8 13 21 34 
+Process finished with exit code 0
