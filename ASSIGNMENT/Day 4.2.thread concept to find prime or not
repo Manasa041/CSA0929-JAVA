@@ -1,0 +1,39 @@
+public class Main {
+    public static void main(String[] args) {
+        int number = 17;
+        Thread primeThread = new Thread(new PrimeChecker(number));
+        primeThread.start();
+    }
+    static class PrimeChecker implements Runnable {
+        private final int number;
+
+        public PrimeChecker(int number) {
+            this.number = number;
+        }
+        @Override
+        public void run() {
+            boolean isPrime = checkPrime(number);
+            if (isPrime) {
+                System.out.println(number + " is a prime number.");
+            } else {
+                System.out.println(number + " is not a prime number.");
+            }
+        }
+        private boolean checkPrime(int num) {
+            if (num <= 1) {
+                return false;
+            }
+            for (int i = 2; i <= Math.sqrt(num); i++) {
+                if (num % i == 0) {
+                    return false;
+                }
+            }
+            return true;
+        }
+    }
+}
+
+OUTPUT:
+17 is a prime number.
+
+Process finished with exit code 0
