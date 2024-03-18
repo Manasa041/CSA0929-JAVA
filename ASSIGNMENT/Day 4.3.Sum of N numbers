@@ -1,0 +1,27 @@
+public class Main {
+    public static void main(String[] args) {
+        int[] numbers = {1, 2, 3, 4, 5};
+        int sum = findSum(numbers);
+        System.out.println("Sum of numbers: " + sum);
+    }
+    public static int findSum(int[] arr) {
+        int sum = 0;
+        int N = arr.length;
+        for (int i = 0; i <= N; i++) {
+            try {
+                sum += arr[i];
+            } catch (ArrayIndexOutOfBoundsException e) {
+                System.out.println("Array index out of bounds exception occurred!");
+                System.out.println("Loop variable went beyond the size N.");
+                e.printStackTrace();
+                return -1; 
+            }
+        }
+        return sum;
+    }
+}
+
+OUTPUT:
+Array index out of bounds exception occurred!
+Loop variable went beyond the size N.
+Sum of numbers: -1
