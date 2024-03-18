@@ -1,0 +1,50 @@
+public class Main {
+    public static void main(String[] args) {
+        Thread table5Thread = new Thread(new MultiplicationTablePrinter(5));
+        Thread table10Thread = new Thread(new MultiplicationTablePrinter(10));
+        table5Thread.start();
+        table10Thread.start();
+    }
+    static class MultiplicationTablePrinter implements Runnable {
+        private final int number;
+        public MultiplicationTablePrinter(int number) {
+            this.number = number;
+        }
+        @Override
+        public void run() {
+            System.out.println("Multiplication table for " + number + ":");
+            for (int i = 1; i <= 10; i++) {
+                System.out.println(number + " * " + i + " = " + (number * i));
+                try {
+                    Thread.sleep(500); 
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+}
+
+OUTPUT:
+Multiplication table for 10:
+Multiplication table for 5:
+10 * 1 = 10
+5 * 1 = 5
+5 * 2 = 10
+10 * 2 = 20
+5 * 3 = 15
+10 * 3 = 30
+5 * 4 = 20
+10 * 4 = 40
+10 * 5 = 50
+5 * 5 = 25
+10 * 6 = 60
+5 * 6 = 30
+5 * 7 = 35
+10 * 7 = 70
+5 * 8 = 40
+10 * 8 = 80
+5 * 9 = 45
+10 * 9 = 90
+5 * 10 = 50
+10 * 10 = 100
