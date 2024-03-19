@@ -1,0 +1,19 @@
+import java.util.Scanner;
+public class Main{
+    public static void main(String[]args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter number of days:");
+        int totalDays = scanner.nextInt();
+        int years = totalDays / 365;
+        int remainingDays = totalDays % 365;
+        int weeks = remainingDays / 7;
+        remainingDays = remainingDays % 7;
+        System.out.print(totalDays + "days=" + years + "years" + weeks + "weeks" + remainingDays + "days.");
+        scanner.close();
+    }
+}
+
+OUTPUT:
+Enter number of days:1987
+1987days=5years23weeks1days.
+Process finished with exit code 0
