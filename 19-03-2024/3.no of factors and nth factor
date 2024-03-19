@@ -1,0 +1,42 @@
+import java.util.Scanner;
+public class Main{
+    public static void main(String[]args){
+        Scanner scanner=new Scanner(System.in);
+        System.out.print("given Number:");
+        int number=scanner.nextInt();
+        System.out.print("N:");
+        int n= scanner.nextInt();
+        int factorsCount=0;
+        for(int i=1;i<=number;i++){
+            if(number%i==0){
+                factorsCount++;
+            }
+        }
+        System.out.println("Number of factors="+factorsCount);
+        int nthFactor=0;
+        for(int i=1;i<=number;i++){
+            if(number%i==0){
+                n--;
+                if(n==0){
+                    nthFactor=i;
+                    break;
+                }
+            }
+        }
+        if(nthFactor!=0) {
+            System.out.println(n + "th factor of" + number + "=" + nthFactor);
+        }else{
+            System.out.println("nth factor not found");
+        }
+    }
+
+}
+
+OUTPUT:
+given Number:100
+N:4
+Number of factors=9
+0th factor of100=5
+
+Process finished with exit code 0
+
