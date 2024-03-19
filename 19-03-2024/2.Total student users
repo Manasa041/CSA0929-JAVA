@@ -1,0 +1,19 @@
+import java.util.Scanner;
+public class Main {
+    public static void main(String[]args){
+        Scanner scanner=new Scanner(System.in);
+        System.out.print("Total users:");
+        int totalUsers= scanner.nextInt();
+        System.out.print("staff users:");
+        int staffUsers= scanner.nextInt();
+        int nonTeachingStaff =staffUsers/3;
+        int studentUsers=totalUsers-staffUsers-nonTeachingStaff;
+        System.out.println("number of student users:"+studentUsers);
+    }
+}
+OUTPUT:
+Total users:345
+staff users:123
+number of student users:181
+
+Process finished with exit code 0
