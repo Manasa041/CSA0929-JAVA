@@ -1,0 +1,74 @@
+class Customer {
+    private int accountNo;
+    private String accName;
+    private double balance;
+
+    public Customer(int accountNo, String accName, double balance) {
+        this.accountNo = accountNo;
+        this.accName = accName;
+        this.balance = balance;
+    }
+    public synchronized void deposit(double amount) {
+        balance += amount;
+        System.out.println("Deposit of Rs." + amount + " successful.");
+        System.out.println("New balance: Rs." + balance);
+        notify();
+    }
+    public synchronized void withdraw(double amount) {
+        try {
+            while (balance < amount) {
+                System.out.println("Insufficient balance. Waiting for deposit...");
+                wait();
+            }
+            balance -= amount;
+            System.out.println("Withdrawal of Rs." + amount + " successful.");
+            System.out.println("New balance: Rs." + balance);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Customer customer = new Customer(123456, "John Doe", 10000);
+        Thread withdrawalThread = new Thread(() -> {
+            System.out.println("Withdrawal thread started...");
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            double withdrawAmount = 12000;
+            synchronized (customer) {
+                customer.withdraw(withdrawAmount);
+            }
+        });
+
+        Thread depositThread = new Thread(() -> {
+            System.out.println("Deposit thread started...");
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            double depositAmount = 3000;
+            synchronized (customer) {
+                customer.deposit(depositAmount);
+            }
+        });
+
+        withdrawalThread.start();
+        depositThread.start();
+    }
+}
+OUTPUT:
+Withdrawal thread started...
+Deposit thread started...
+Insufficient balance. Waiting for deposit...
+Deposit of Rs.3000.0 successful.
+New balance: Rs.13000.0
+Withdrawal of Rs.12000.0 successful.
+New balance: Rs.1000.0
+
+Process finished with exit code 0
