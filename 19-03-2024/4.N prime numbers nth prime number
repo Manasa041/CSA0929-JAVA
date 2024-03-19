@@ -1,0 +1,50 @@
+import java.util.Scanner;
+public class Main {
+    static boolean isPrime(int num) {
+        if (num <= 1) {
+            return false;
+        }
+        for (int i = 2; i <= Math.sqrt(num); i++) {
+            if (num % i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+    static int findNthPrime(int n) {
+        int count = 0;
+        int num = 2;
+        while (count < n) {
+            if (isPrime(num)) {
+                count++;
+            }
+            num++;
+        }
+        return num - 1;
+    }
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("N = ");
+        int N = scanner.nextInt();
+        int nthPrime = findNthPrime(N);
+        System.out.println(N + (N == 1 ? "st" : (N == 2 ? "nd" : "rd")) + " Prime number is " + nthPrime);
+        System.out.print(N + " prime numbers after " + nthPrime + " are: ");
+        int count = 0;
+        int num = nthPrime + 1;
+        while (count < N) {
+            if (isPrime(num)) {
+                System.out.print(num + ", ");
+                count++;
+            }
+            num++;
+        }
+
+        scanner.close();
+    }
+}
+
+OUTPUT:
+N = 6
+6rd Prime number is 13
+6 prime numbers after 13 are: 17, 19, 23, 29, 31, 37, 
+Process finished with exit code 0
