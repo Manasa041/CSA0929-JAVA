@@ -1,0 +1,70 @@
+import java.util.Scanner;
+class BankAccount {
+    private String depositorName;
+    private int accountNumber;
+    private String accountType;
+    private double balance;
+    public BankAccount(String depositorName, int accountNumber, String accountType, double balance) {
+        this.depositorName = depositorName;
+        this.accountNumber = accountNumber;
+        this.accountType = accountType;
+        this.balance = balance;
+    }
+    public void deposit(double amount) {
+        balance += amount;
+        System.out.println("Deposit successful. Current balance: Rs." + balance);
+    }
+    public void withdraw(double amount) {
+        if (balance - amount >= 500) {
+            balance -= amount;
+            System.out.println("Withdrawal successful. Current balance: Rs." + balance);
+        } else {
+            System.out.println("Insufficient balance. Withdrawal failed.");
+        }
+    }
+    public void displayBalance() {
+        System.out.println("Account Balance: Rs." + balance);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter depositor name:");
+        String name = scanner.nextLine();
+        System.out.println("Enter account number:");
+        int accountNumber = scanner.nextInt();
+        scanner.nextLine();
+        System.out.println("Enter account type (Savings/Current):");
+        String type = scanner.nextLine();
+        BankAccount account = new BankAccount(name, accountNumber, type, 10000);
+
+        System.out.println("Enter amount to deposit:");
+        double depositAmount = scanner.nextDouble();
+        account.deposit(depositAmount);
+
+        System.out.println("Enter amount to withdraw:");
+        double withdrawAmount = scanner.nextDouble();
+        account.withdraw(withdrawAmount);
+
+        account.displayBalance();
+
+        scanner.close();
+    }
+}
+OUTPUT:
+Enter depositor name:
+Manasa
+Enter account number:
+67890
+Enter account type (Savings/Current):
+savings
+Enter amount to deposit:
+8900
+Deposit successful. Current balance: Rs.18900.0
+Enter amount to withdraw:
+8000
+Withdrawal successful. Current balance: Rs.10900.0
+Account Balance: Rs.10900.0
+
+Process finished with exit code 0
