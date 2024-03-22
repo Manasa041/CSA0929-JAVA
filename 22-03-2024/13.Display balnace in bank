@@ -1,0 +1,76 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        // Test cases
+        BankAccount account1 = new BankAccount(100, "Raja", "S", 8000);
+        account1.displayBalance();
+
+        BankAccount account2 = new BankAccount("Raja", 100, "S", 9000);
+        account2.displayBalance();
+
+        BankAccount account3 = new BankAccount(101, "Rani", "S", 12000);
+        account3.displayBalance();
+
+        BankAccount account4 = new BankAccount(102, "Ragu", "W", 8000);
+        account4.displayBalance();
+
+        BankAccount account5 = new BankAccount(103, "Ravi", "C", 10000);
+        account5.displayBalance();
+    }
+}
+
+class BankAccount {
+    private int accountNumber;
+    private String depositorName;
+    private String accountType;
+    private double balance;
+
+    public BankAccount(int accountNumber, String depositorName, String accountType, double initialBalance) {
+        this.accountNumber = accountNumber;
+        this.depositorName = depositorName;
+        this.accountType = accountType;
+        this.balance = initialBalance;
+    }
+
+    public BankAccount(String depositorName, int accountNumber, String accountType, double initialBalance) {
+        this.accountNumber = accountNumber;
+        this.depositorName = depositorName;
+        this.accountType = accountType;
+        this.balance = initialBalance;
+    }
+
+    public void displayBalance() {
+        System.out.println("Account Number: " + accountNumber);
+        System.out.println("Depositor Name: " + depositorName);
+        System.out.println("Account Type: " + accountType);
+        System.out.println("Balance: " + balance);
+        System.out.println();
+    }
+}
+
+OUTPUT:
+Account Number: 100
+Depositor Name: Raja
+Account Type: S
+Balance: 8000.0
+
+Account Number: 100
+Depositor Name: Raja
+Account Type: S
+Balance: 9000.0
+
+Account Number: 101
+Depositor Name: Rani
+Account Type: S
+Balance: 12000.0
+
+Account Number: 102
+Depositor Name: Ragu
+Account Type: W
+Balance: 8000.0
+
+Account Number: 103
+Depositor Name: Ravi
+Account Type: C
+Balance: 10000.0
