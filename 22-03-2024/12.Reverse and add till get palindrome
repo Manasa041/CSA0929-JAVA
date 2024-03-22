@@ -1,0 +1,47 @@
+public class Main {
+    public static void main(String[] args) {
+        int inputNumber = 7325;
+        int steps = reverseAndAddToPalindrome(inputNumber);
+        System.out.println("Number of steps to reach palindrome: " + steps);
+    }
+
+    public static int reverseAndAddToPalindrome(int number) {
+        int steps = 0;
+        while (!isPalindrome(number)) {
+            int reversedNumber = reverseNumber(number);
+            number += reversedNumber;
+            steps++;
+            System.out.println(number);
+        }
+        return steps;
+    }
+
+    public static int reverseNumber(int number) {
+        int reversed = 0;
+        while (number != 0) {
+            int digit = number % 10;
+            reversed = reversed * 10 + digit;
+            number /= 10;
+        }
+        return reversed;
+    }
+
+    public static boolean isPalindrome(int number) {
+        int original = number;
+        int reversed = 0;
+        while (number != 0) {
+            int digit = number % 10;
+            reversed = reversed * 10 + digit;
+            number /= 10;
+        }
+        return original == reversed;
+    }
+}
+
+OUTPUT:
+12562
+39083
+77176
+144353
+497794
+Number of steps to reach palindrome: 5
