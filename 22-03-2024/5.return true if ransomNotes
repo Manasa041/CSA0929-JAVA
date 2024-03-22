@@ -1,0 +1,37 @@
+import java.util.HashMap;
+import java.util.Map;
+
+public class Main {
+    public static void main(String[] args) {
+        System.out.println(canConstruct("a", "b"));
+        System.out.println(canConstruct("aa", "ab")); 
+        System.out.println(canConstruct("aa", "aab")); 
+        System.out.println(canConstruct("abc", "abc"));
+        System.out.println(canConstruct("good", "better"));
+        System.out.println(canConstruct("xyz", "123")); 
+    }
+    public static boolean canConstruct(String ransomNote, String magazine) {
+        Map<Character, Integer> magazineMap = new HashMap<>();
+        for (char ch : magazine.toCharArray()) {
+            magazineMap.put(ch, magazineMap.getOrDefault(ch, 0) + 1);
+        }
+        for (char ch : ransomNote.toCharArray()) {
+            if (!magazineMap.containsKey(ch) || magazineMap.get(ch) == 0) {
+                return false;
+            }
+            magazineMap.put(ch, magazineMap.get(ch) - 1);
+        }
+
+        return true;
+    }
+}
+
+OUTPUT:
+false
+false
+true
+true
+false
+false
+
+Process finished with exit code 0
