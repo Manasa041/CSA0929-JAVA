@@ -1,0 +1,61 @@
+public class Main {
+    public static void main(String[] args) {
+        Customer customer = new Customer("John", 10000);
+
+        // Withdraw threads
+        Thread withdrawThread1 = new Thread(() -> customer.withdraw(12000), "WithdrawThread1");
+        Thread withdrawThread2 = new Thread(() -> customer.withdraw(3000), "WithdrawThread2");
+
+        // Start withdraw threads
+        withdrawThread1.start();
+        withdrawThread2.start();
+
+        // Deposit thread
+        Thread depositThread = new Thread(() -> customer.deposit(15000), "DepositThread");
+        depositThread.start();
+    }
+}
+
+class Customer {
+    private int accountNo;
+    private String accName;
+    private int balance;
+
+    public Customer(String accName, int balance) {
+        this.accountNo = 12345; // Example account number
+        this.accName = accName;
+        this.balance = balance;
+    }
+
+    public synchronized void deposit(int amount) {
+        System.out.println(Thread.currentThread().getName() + " is depositing amount: " + amount);
+        balance += amount;
+        System.out.println("Deposit operation success, new balance amount: " + balance);
+        notifyAll(); // Notify waiting threads that deposit is completed
+    }
+
+    public synchronized void withdraw(int amount) {
+        System.out.println(Thread.currentThread().getName() + " is withdrawing amount: " + amount);
+        while (balance < amount) {
+            try {
+                System.out.println("Insufficient balance. " + Thread.currentThread().getName() + " is waiting...");
+                wait(); // Wait until sufficient balance is available
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        balance -= amount;
+        System.out.println("Withdraw operation success, new balance amount: " + balance);
+    }
+}
+
+OUTPUT:
+WithdrawThread1 is withdrawing amount: 12000
+Insufficient balance. WithdrawThread1 is waiting...
+DepositThread is depositing amount: 15000
+Deposit operation success, new balance amount: 25000
+WithdrawThread2 is withdrawing amount: 3000
+Withdraw operation success, new balance amount: 22000
+Withdraw operation success, new balance amount: 10000
+
+Process finished with exit code 0
