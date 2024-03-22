@@ -1,0 +1,31 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Input: num = ");
+        int num = scanner.nextInt();
+
+        int steps = numberOfSteps(num);
+        System.out.println("Output: " + steps);
+    }
+
+    public static int numberOfSteps(int num) {
+        int steps = 0;
+        while (num != 0) {
+            if (num % 2 == 0) {
+                num /= 2;
+            } else {
+                num -= 1;
+            }
+            steps++;
+        }
+        return steps;
+    }
+}
+
+OUTPUT:
+Input: num = 7
+Output: 5
+
+Process finished with exit code 0
