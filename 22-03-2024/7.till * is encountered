@@ -1,0 +1,48 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int uppercaseCount = 0;
+        int lowercaseCount = 0;
+        int numberCount = 0;
+
+        System.out.println("Enter * to exit...");
+        while (true) {
+            System.out.print("Enter any character: ");
+            char ch = scanner.next().charAt(0);
+
+            if (ch == '*') {
+                break;
+            }
+
+            if (Character.isUpperCase(ch)) {
+                uppercaseCount++;
+            } else if (Character.isLowerCase(ch)) {
+                lowercaseCount++;
+            } else if (Character.isDigit(ch)) {
+                numberCount++;
+            }
+        }
+
+        System.out.println("Total count of lowercase: " + lowercaseCount);
+        System.out.println("Total count of uppercase: " + uppercaseCount);
+        System.out.println("Total count of numbers: " + numberCount);
+    }
+}
+
+OUTPUT:
+Enter any character: 
+p
+Enter any character: 0
+Enter any character: P
+Enter any character: P
+Enter any character: p
+Enter any character: 2
+Enter any character: $
+Enter any character: @
+Enter any character: f
+Enter any character: *
+Total count of lowercase: 3
+Total count of uppercase: 2
+Total count of numbers: 2
